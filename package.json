@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run lint; next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "dev": "nodemon",
+    "next:dev": "next dev",
+    "type-check": "tsc --noEmit --incremental",
+    "lint": "next lint"
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
@@ -17,9 +19,12 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "nodemon": "^3.0.1",
     "@types/node": "20.4.6",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "eslint-config-prettier": "^9.0.0",
