@@ -1,8 +1,4 @@
-import {
-  FailedVerifyEmail,
-  RecivedVerifyEmail,
-  VerifyEmailAction,
-} from "@/APIs/types/authentication/actions.type";
+import { VerifyEmailAction } from "@/APIs/types/authentication/actions.type";
 import { VerifyEmailActionTypes } from "@/APIs/types/authentication/authentication.enum";
 import { VerifyEmailState } from "@/APIs/types/authentication/reducers.type";
 
@@ -29,7 +25,7 @@ export const verifyEmailReducer = (
     case VerifyEmailActionTypes.RECIVED_VERIFY_EMAIL: {
       currentState = {
         isFetching: false,
-        statusCode: (action as RecivedVerifyEmail).statusCode,
+        statusCode: (action as VerifyEmailAction).statusCode,
       };
       break;
     }
@@ -37,7 +33,7 @@ export const verifyEmailReducer = (
     case VerifyEmailActionTypes.FAILED_VERIFY_EMAIL: {
       currentState = {
         isFetching: false,
-        statusCode: (action as FailedVerifyEmail).statusCode,
+        statusCode: (action as VerifyEmailAction).statusCode,
       };
       break;
     }
