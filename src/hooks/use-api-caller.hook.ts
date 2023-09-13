@@ -3,11 +3,19 @@ import { useReducer } from "react";
 import { API_URL } from "@/config";
 import axios from "axios";
 import {
+  signUpReducer,
+  signUpReducerInitialState,
   verifyEmailInitialState,
   verifyEmailReducer,
 } from "@/APIs/reducers/authentication/sign-up.reducer";
-import { VerifyEmailActionData } from "@/APIs/types/authentication/actions.type";
-import { verifyEmailAction } from "@/APIs/actions/authentication/sign-up.action";
+import {
+  SignUpActionData,
+  VerifyEmailActionData,
+} from "@/APIs/types/authentication/actions.type";
+import {
+  singUpAction,
+  verifyEmailAction,
+} from "@/APIs/actions/authentication/sign-up.action";
 
 axios.defaults.baseURL = API_URL;
 const userToken = global?.localStorage?.getItem("userToken");
@@ -23,8 +31,15 @@ export const useAPICaller = () => {
   const verifyEmail = (data: VerifyEmailActionData) =>
     verifyEmailAction(verifyEmailDispatch, data);
 
+  const [signUpResult, signUpDispatch] = useReducer(
+    signUpReducer,
+    signUpReducerInitialState
+  );
+  const signUp = (data: SignUpActionData) => singUpAction(signUpDispatch, data);
+
   return {
     verifyEmailCaller: [verifyEmail, verifyEmailResult] as const,
+    signUpCaller: [signUp, signUpResult] as const,
   };
 };
 
