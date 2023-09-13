@@ -18,7 +18,8 @@
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "no-console": ["error", { "allow": ["warn", "error"] }],
-    "@typescript-eslint/no-this-alias": "off"
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "@typescript-eslint/no-this-alias": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
