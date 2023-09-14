@@ -1,9 +1,6 @@
 import { LoginAction } from "@/APIs/types/authentication/actions.type";
 import { LoginActionTypes } from "@/APIs/types/authentication/authentication.enum";
-import {
-  LoginState,
-  VerifyEmailState,
-} from "@/APIs/types/authentication/reducers.type";
+import { LoginState } from "@/APIs/types/authentication/reducers.type";
 
 export const loginInitialState: LoginState = {
   isFetching: false,
@@ -13,8 +10,8 @@ export const loginInitialState: LoginState = {
 
 export const loginReducer = (
   state: LoginState,
-  action: LoginAction
-): VerifyEmailState => {
+  action: LoginAction,
+): LoginState => {
   let currentState: LoginState = { ...state };
 
   switch (action.type) {
