@@ -1,8 +1,6 @@
 import {
   SignUpAction,
-  SignUpActionData,
   VerifyEmailAction,
-  VerifyEmailActionData,
 } from "@/APIs/types/authentication/actions.type";
 import {
   SignUpActionTypes,
@@ -11,9 +9,9 @@ import {
 import axios from "axios";
 import { Dispatch } from "react";
 
-export const verifyEmailAction = (
+export const verifyEmailAction = <T>(
   dispatch: Dispatch<VerifyEmailAction>,
-  verificationToken: VerifyEmailActionData
+  verificationToken: T,
 ) => {
   dispatch({ type: VerifyEmailActionTypes.REQUESTED_VERIFY_EMAIL });
 
@@ -33,10 +31,7 @@ export const verifyEmailAction = (
     });
 };
 
-export const singUpAction = (
-  dispatch: Dispatch<SignUpAction>,
-  data: SignUpActionData
-) => {
+export const singUpAction = <T>(dispatch: Dispatch<SignUpAction>, data: T) => {
   dispatch({ type: SignUpActionTypes.REQUESTED_SIGNUP });
 
   axios
