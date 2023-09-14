@@ -22,7 +22,7 @@ import { loginAction } from "@/APIs/actions/authentication/login.action";
 axios.defaults.baseURL = API_URL;
 const userToken = global?.localStorage?.getItem("userToken");
 if (userToken) {
-  axios.defaults.headers.common["Authorization"] = userToken;
+  axios.defaults.headers.common["Authorization"] = "Bearer " + userToken;
 }
 
 export const useAPICaller = () => {
