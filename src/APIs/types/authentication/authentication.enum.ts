@@ -9,3 +9,9 @@ export enum SignUpActionTypes {
   RECIVED_SIGNUP = "RECIVED_SIGNUP",
   FAILED_SIGNUP = "FAILED_SIGNUP",
 }
+
+export enum LoginActionTypes {
+  REQUESTD_LOGIN = "REQUESTD_LOGIN",
+  RECIVED_LOGIN = "RECIVED_LOGIN",
+  FAILED_LOGIN = "FAILED_LOGIN",
+}
