@@ -17,15 +17,15 @@ export default function Page() {
 
   const logInTheUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const password = getElementValueById("password") as string;
-    const email = getElementValueById("email") as string;
+    const password = getElementValueById("password");
+    const email = getElementValueById("email");
 
     const userInformation = {
       password,
       email,
     };
 
-    login(userInformation);
+    login<typeof userInformation>(userInformation);
   };
 
   useEffect(() => {
