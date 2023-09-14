@@ -8,11 +8,7 @@ import {
   verifyEmailInitialState,
   verifyEmailReducer,
 } from "@/APIs/reducers/authentication/sign-up.reducer";
-import {
-  LoginActionData,
-  SignUpActionData,
-  VerifyEmailActionData,
-} from "@/APIs/types/authentication/actions.type";
+
 import {
   singUpAction,
   verifyEmailAction,
@@ -34,20 +30,20 @@ export const useAPICaller = () => {
     verifyEmailReducer,
     verifyEmailInitialState
   );
-  const verifyEmail = (data: VerifyEmailActionData) =>
-    verifyEmailAction(verifyEmailDispatch, data);
+  const verifyEmail = <T>(data: T) =>
+    verifyEmailAction<T>(verifyEmailDispatch, data);
 
   const [signUpResult, signUpDispatch] = useReducer(
     signUpReducer,
     signUpReducerInitialState
   );
-  const signUp = (data: SignUpActionData) => singUpAction(signUpDispatch, data);
+  const signUp = <T>(data: T) => singUpAction<T>(signUpDispatch, data);
 
   const [loginResult, loginDispatch] = useReducer(
     loginReducer,
     loginInitialState
   );
-  const login = (data: LoginActionData) => loginAction(loginDispatch, data);
+  const login = <T>(data: T) => loginAction<T>(loginDispatch, data);
 
   return {
     verifyEmailCaller: [verifyEmail, verifyEmailResult] as const,
