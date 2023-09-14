@@ -1,7 +1,7 @@
 "use client";
 
+import axios from "axios";
 import styles from "./styles/page.style.module.css";
-
 import UserNameIcon from "@icons/user.png";
 import PasswordIcon from "@icons/key.png";
 import Image from "next/image";
@@ -30,6 +30,10 @@ export default function Page() {
 
   useEffect(() => {
     if (result.statusCode === StatusCodes.SUCCESS_MSG) {
+      global.localStorage.setItem("userToken", result.userToken as string);
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + result.userToken;
+
       router.push("/boards-panel");
       return;
     }
