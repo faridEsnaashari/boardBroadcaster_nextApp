@@ -21,6 +21,7 @@ import { loginAction } from "@/APIs/actions/authentication/login.action";
 
 axios.defaults.baseURL = API_URL;
 const userToken = global?.localStorage?.getItem("userToken");
+axios.defaults.withCredentials = true;
 if (userToken) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + userToken;
 }
