@@ -1,5 +1,5 @@
 import { getUserData } from "@/APIs/server-apis";
-import { LayoutProps } from "./types.type";
+import { LayoutProps } from "@/common/types/next-components.type";
 import UserContext from "@/contexts/user";
 
 export default async function Layout({ children }: LayoutProps) {
