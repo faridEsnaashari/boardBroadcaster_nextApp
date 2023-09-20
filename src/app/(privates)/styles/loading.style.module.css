@@ -1,0 +1,12 @@
+.privateRouteLoadingContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.privateRouteLoadingMain {
+  width: 5em;
+  height: 5em;
+}
