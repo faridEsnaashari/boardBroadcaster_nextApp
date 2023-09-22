@@ -18,6 +18,19 @@ import {
   loginReducer,
 } from "@/APIs/reducers/authentication/login.reducer";
 import { loginAction } from "@/APIs/actions/authentication/login.action";
+import {
+  createBoardInitialState,
+  createBoardReducer,
+  deleteBoardInitialState,
+  deleteBoardReducer,
+  updateBoardInitialState,
+  updateBoardReducer,
+} from "@/APIs/reducers/boards/boards-crud.reducer";
+import {
+  createBoardAction,
+  deleteBoardAction,
+  updateBoardAction,
+} from "@/APIs/actions/boards/boards-crud.action";
 
 axios.defaults.baseURL = API_URL;
 const userToken = global?.localStorage?.getItem("userToken");
@@ -29,27 +42,53 @@ if (userToken) {
 export const useAPICaller = () => {
   const [verifyEmailResult, verifyEmailDispatch] = useReducer(
     verifyEmailReducer,
-    verifyEmailInitialState
+    verifyEmailInitialState,
   );
   const verifyEmail = <T>(data: T) =>
     verifyEmailAction<T>(verifyEmailDispatch, data);
 
   const [signUpResult, signUpDispatch] = useReducer(
     signUpReducer,
-    signUpReducerInitialState
+    signUpReducerInitialState,
   );
   const signUp = <T>(data: T) => singUpAction<T>(signUpDispatch, data);
 
   const [loginResult, loginDispatch] = useReducer(
     loginReducer,
-    loginInitialState
+    loginInitialState,
   );
   const login = <T>(data: T) => loginAction<T>(loginDispatch, data);
+
+  const [createBoardResult, createBoardDispatch] = useReducer(
+    createBoardReducer,
+    createBoardInitialState,
+  );
+  const createBoard = <T>(data: T) =>
+    createBoardAction<T>(createBoardDispatch, data);
+
+  const [updateBoardResult, updateBoardDispatch] = useReducer(
+    updateBoardReducer,
+    updateBoardInitialState,
+  );
+  const updateBoard = <T>(data: T) =>
+    updateBoardAction<T>(updateBoardDispatch, data);
+
+  const [deleteBoardResult, deleteBoardDispatch] = useReducer(
+    deleteBoardReducer,
+    deleteBoardInitialState,
+  );
+  const deleteBoard = <T>(data: T) =>
+    deleteBoardAction<T>(deleteBoardDispatch, data);
 
   return {
     verifyEmailCaller: [verifyEmail, verifyEmailResult] as const,
     signUpCaller: [signUp, signUpResult] as const,
     loginCaller: [login, loginResult] as const,
+    boardCaller: {
+      create: [createBoard, createBoardResult] as const,
+      update: [updateBoard, updateBoardResult] as const,
+      delete: [deleteBoard, deleteBoardResult] as const,
+    },
   };
 };
 
