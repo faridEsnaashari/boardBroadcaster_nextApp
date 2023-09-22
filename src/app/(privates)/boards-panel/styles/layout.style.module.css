@@ -1,0 +1,34 @@
+.boardsPanelMainContainer {
+  background-color: #494a57;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: auto;
+}
+
+.boardsPanelHeader > div:first-child {
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+}
+
+.boardsPanelHeader {
+  padding: 0 2em;
+  height: 5em;
+  background-color: #9d9d9d;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+  top: 0;
+  color: #21222d;
+  font-weight: bold;
+}
+
+.boardsPanelLanguageSelectorContainer {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+}

@@ -1,0 +1,241 @@
+.boardMainContainer {
+  background-color: #21222d;
+  border-radius: 0 10px 10px 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: fit-content;
+  height: fit-content;
+  transform-origin: left;
+}
+
+.boardMainContainerDelete {
+  animation-name: delete-board;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.boardMainContainer::before {
+  content: "";
+  width: 0.5em;
+  height: 100%;
+  display: block;
+  position: absolute;
+}
+
+.boardWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.boardNameContainer {
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1em;
+  height: 3em;
+}
+
+.boardName {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.2em;
+}
+
+.boardActions {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1em;
+  height: 3em;
+}
+
+.boardActions > div {
+  width: 2.5rem;
+  border: 1px solid;
+  margin-left: 10px;
+  border-radius: 100px;
+  height: calc(2.5rem - 10px);
+  overflow: hidden;
+}
+
+.boardDeleteConfirmaionContainer {
+  transition:
+    width 500ms,
+    height 500ms;
+  background-color: #c31515;
+  display: flex;
+  height: 3em;
+}
+
+.boardDeleteConfirmaionContainer div:first-child {
+  border-right: 1px solid #fff;
+}
+
+.boardDeleteConfirmaionContainer div {
+  transition: background-color 200ms;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  display: flex;
+}
+
+.boardDeleteConfirmaionContainer div:hover {
+  background-color: #aa0606;
+}
+
+.boardDeleteConfirmaionContainer img {
+  width: 2em;
+  height: 2em;
+}
+
+.boardDeleteConfirmaionContainerOpen {
+  width: 5rem;
+}
+
+.boardDeleteConfirmaionContainerClose {
+  width: 0;
+}
+
+.boardDeleteConfirmaionContainerClose img {
+  width: 0;
+}
+
+.boardRenameFieldContainerOpen {
+  height: 5em;
+  padding-bottom: 0.5rem;
+}
+
+.boardRenameFieldContainerClose {
+  height: 0;
+}
+
+.boardRenameFieldContainer {
+  transition: height 500ms;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.boardMainContainerColor0::before {
+  background-color: #d04f4f;
+}
+
+.boardMainContainerColor1::before {
+  background-color: #d0984f;
+}
+
+.boardMainContainerColor2::before {
+  background-color: #a8d04f;
+}
+
+.boardMainContainerColor3::before {
+  background-color: #4fd0ac;
+}
+
+.boardRenameConfirmButtonContainer {
+  display: flex;
+  width: 7.8rem;
+}
+
+.boardRenameConfirmButton {
+  width: 2.5rem;
+  border: 1px solid;
+  margin-left: 10px;
+  border-radius: 100px;
+  height: calc(2.5rem - 10px);
+  cursor: pointer;
+}
+
+.boardRenameConfirmButton img {
+  width: 100%;
+  height: 100%;
+}
+
+.boardRenameConfirmButtonFake {
+  opacity: 0;
+}
+
+.boardRenameInput {
+  height: 2rem;
+  border-radius: 0.5em;
+  outline: unset;
+  background-color: #21222d;
+  color: #fff;
+  padding-left: 1em;
+  transition: background-color 100ms;
+  width: 11.5rem;
+}
+
+.board-rename-input:focus-visible {
+  background-color: #5f606c;
+}
+
+.boardRenameInputColor0 {
+  border: 1px solid #d04f4f;
+}
+
+.boardRenameInputColor1 {
+  border: 1px solid #d0984f;
+}
+
+.boardRenameInputColor2 {
+  border: 1px solid #a8d04f;
+}
+
+.boardRenameInputColor3 {
+  border: 1px solid #4fd0ac;
+}
+
+.boardReset {
+  background-color: red;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+@keyframes delete-board {
+  99% {
+    position: relative;
+  }
+
+  100% {
+    transform: scaleX(0);
+    position: absolute;
+  }
+}
+
+@media (max-width: 500px) {
+  .boardDeleteConfirmaionContainerOpen {
+    height: 3em;
+  }
+
+  .boardDeleteConfirmaionContainerClose {
+    height: 0px;
+  }
+
+  .boardDeleteConfirmaionContainer {
+    width: 100%;
+  }
+
+  .boardWrapper {
+    justify-content: center;
+  }
+
+  .boardMainContainer {
+    max-width: unset;
+  }
+}

@@ -1,0 +1,101 @@
+.actionsContainer {
+  width: 100%;
+  height: 100%;
+  padding: 0.3em;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+
+.actionsContainer img {
+  width: 100%;
+  height: 40%;
+}
+
+.actionsContainer::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 200ms;
+}
+
+.actionsContainer:hover::before {
+  opacity: 0.3;
+}
+
+.tooltip {
+  background-color: #9c9da8;
+  display: block;
+  color: #131010db;
+  border-radius: 5px;
+  transition: opacity 300ms;
+  opacity: 0;
+  position: absolute;
+  padding: 1em;
+  width: fit-content;
+  z-index: -1;
+}
+
+.tooltipShow {
+  opacity: 1;
+  z-index: 1;
+}
+
+.actions {
+  width: 100%;
+  height: 220%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  top: -120%;
+  transition: top 400ms;
+}
+
+.actions > div {
+  width: 100%;
+  height: 40%;
+}
+
+.actionsLoading {
+  top: 0;
+}
+
+.doneContainer {
+  position: absolute;
+  height: 50% !important;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    top 200ms,
+    opacity 200ms;
+  opacity: 0;
+}
+
+.actions > div:first-child div {
+  width: 50%;
+  height: 70%;
+  border: 3px solid #fff;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+  border-left: unset;
+  border-top: unset;
+}
+
+.doneShow {
+  top: 50%;
+  opacity: 1;
+}
+
+.doneHide {
+  top: -10px;
+}

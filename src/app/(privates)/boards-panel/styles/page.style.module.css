@@ -1,0 +1,7 @@
+.boardsPanelBody {
+  margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 2em;
+}

@@ -1,0 +1,45 @@
+.optionContainer {
+  width: 8em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.optionContainer > div {
+  height: 50%;
+  border-radius: 3em;
+  position: absolute;
+  right: 0;
+  background-color: #878793;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logOut {
+  width: 100%;
+  transition: width 300ms;
+  padding-right: 1em;
+  box-sizing: border-box;
+}
+
+.logOutClose {
+  width: 30%;
+  overflow: hidden;
+}
+
+.threeDotContainer {
+  width: 30%;
+  flex-direction: column;
+  gap: 0.1em;
+}
+
+.threeDotContainer > div {
+  width: 0.4em;
+  height: 0.4em;
+  background-color: #21222d;
+  border-radius: 1em;
+}
