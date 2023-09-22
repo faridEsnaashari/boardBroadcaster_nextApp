@@ -1,4 +1,4 @@
-import { User } from "@/APIs/server-apis/server-apis.type";
+import { User } from "@/common/types/entities.type";
 import { createContext } from "react";
 
-export const UserContext = createContext<User>({});
+export const UserContext = createContext<User | undefined>(undefined);

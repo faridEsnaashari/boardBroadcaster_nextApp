@@ -1,8 +1,8 @@
 "use client";
 
-import { User } from "@/APIs/server-apis/server-apis.type";
 import { ReactNode } from "react";
 import { UserContext } from "./user.context";
+import { User } from "@/common/types/entities.type";
 
 export default function UserContextWrapper({
   userData,
