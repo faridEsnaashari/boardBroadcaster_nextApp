@@ -2,7 +2,7 @@
 
 import { BoardColor } from "@/common/types/entities.type";
 import styles from "../styles/board-card.style.module.css";
-import { BoardCardProps } from "../types/types.type";
+import { BoardCardProps } from "../types.type";
 import { useRef, useState, useEffect } from "react";
 import Action from "./Action.component";
 import LinkIcon from "@icons/link.png";

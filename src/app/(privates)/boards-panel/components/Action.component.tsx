@@ -2,7 +2,7 @@
 
 import LoadingCircle from "@/common/components/loading-circle";
 import Image from "next/image";
-import { ActionProps } from "../types/types.type";
+import { ActionProps } from "../types.type";
 import styles from "../styles/action.style.module.css";
 import { useRef, useEffect, MouseEvent } from "react";
 

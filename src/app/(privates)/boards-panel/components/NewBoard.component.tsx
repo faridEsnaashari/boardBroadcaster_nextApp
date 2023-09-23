@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import styles from "../styles/new-board.style.module.css";
-import { NewBoardProps } from "../types/types.type";
+import { NewBoardProps } from "../types.type";
 import LoadingCircle from "@/common/components/loading-circle";
 
 export default function NewBoard({ isLoading, createBoard }: NewBoardProps) {
