@@ -12,7 +12,7 @@ export default function Page({ params }: Params) {
 
   const router = useRouter();
 
-  useEffect(() => verifyEmail<string>(verificationToken), []);
+  useEffect(() => verifyEmail(verificationToken), []);
   useEffect(() => {
     if (result.statusCode === StatusCodes.SUCCESS_MSG) {
       router.push("/login");

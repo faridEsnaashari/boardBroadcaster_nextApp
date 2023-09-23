@@ -24,9 +24,9 @@ export default function Page() {
 
   const registerTheUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const name = getElementValueById("name");
-    const password = getElementValueById("password");
-    const email = getElementValueById("email");
+    const name = getElementValueById("name")!;
+    const password = getElementValueById("password")!;
+    const email = getElementValueById("email")!;
 
     const userInformation = {
       name,
@@ -34,7 +34,7 @@ export default function Page() {
       email,
     };
 
-    signUp<typeof userInformation>(userInformation);
+    signUp(userInformation);
   };
 
   return (
