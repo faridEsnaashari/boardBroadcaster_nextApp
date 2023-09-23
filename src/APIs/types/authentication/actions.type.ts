@@ -20,3 +20,16 @@ export type LoginAction = {
   type: LoginActionTypes;
   userToken?: string;
 };
+
+export type LoginActionData = {
+  password: string;
+  email: string;
+};
+
+export type SignupActionData = {
+  password: string;
+  email: string;
+  name: string;
+};
+
+export type VerifyEmailActionData = string;
