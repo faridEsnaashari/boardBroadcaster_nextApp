@@ -1,6 +1,9 @@
 import {
   BoardCrudAction,
   ApiBoardResponse,
+  UpdateBoardActionData,
+  CreateBoardActionData,
+  DeleteBoardActionData,
 } from "@/APIs/types/boards/actions.type";
 import {
   CreateBoardActionTypes,
@@ -10,9 +13,9 @@ import {
 import axios from "axios";
 import { Dispatch } from "react";
 
-export const createBoardAction = <T>(
+export const createBoardAction = (
   dispatch: Dispatch<BoardCrudAction<CreateBoardActionTypes>>,
-  data: T,
+  data: CreateBoardActionData,
 ) => {
   dispatch({ type: CreateBoardActionTypes.REQUESTED_BOARD_CREATE });
 
@@ -34,14 +37,16 @@ export const createBoardAction = <T>(
     });
 };
 
-export const updateBoardAction = <T>(
+export const updateBoardAction = (
   dispatch: Dispatch<BoardCrudAction<UpdateBoardActionTypes>>,
-  data: T,
+  data: UpdateBoardActionData,
 ) => {
   dispatch({ type: UpdateBoardActionTypes.REQUESTED_BOARD_UPDATE });
 
+  const { id, ...rest } = data;
+
   axios
-    .put<ApiBoardResponse>(`/board/${data.id}`, data)
+    .put<ApiBoardResponse>(`/board/${id}`, rest)
     .then((response) => {
       dispatch({
         type: UpdateBoardActionTypes.RECIVED_BOARD_UPDATE,
@@ -58,9 +63,9 @@ export const updateBoardAction = <T>(
     });
 };
 
-export const deleteBoardAction = <T>(
+export const deleteBoardAction = (
   dispatch: Dispatch<BoardCrudAction<DeleteBoardAcrionTypes>>,
-  data: T,
+  data: DeleteBoardActionData,
 ) => {
   dispatch({ type: DeleteBoardAcrionTypes.REQUESTED_BOARD_DELETE });
 
@@ -77,7 +82,7 @@ export const deleteBoardAction = <T>(
       dispatch({
         type: DeleteBoardAcrionTypes.FAILED_BOARD_DELETE,
         statusCode: error?.response.status,
-        error: data as string,
+        error: data.id,
       });
     });
 };

@@ -1,9 +1,15 @@
-import { LoginAction } from "@/APIs/types/authentication/actions.type";
+import {
+  LoginAction,
+  LoginActionData,
+} from "@/APIs/types/authentication/actions.type";
 import { LoginActionTypes } from "@/APIs/types/authentication/authentication.enum";
 import axios from "axios";
 import { Dispatch } from "react";
 
-export const loginAction = <T>(dispatch: Dispatch<LoginAction>, data: T) => {
+export const loginAction = (
+  dispatch: Dispatch<LoginAction>,
+  data: LoginActionData,
+) => {
   dispatch({ type: LoginActionTypes.REQUESTD_LOGIN });
 
   axios

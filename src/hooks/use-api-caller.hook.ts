@@ -31,6 +31,16 @@ import {
   deleteBoardAction,
   updateBoardAction,
 } from "@/APIs/actions/boards/boards-crud.action";
+import {
+  LoginActionData,
+  SignupActionData,
+  VerifyEmailActionData,
+} from "@/APIs/types/authentication/actions.type";
+import {
+  CreateBoardActionData,
+  DeleteBoardActionData,
+  UpdateBoardActionData,
+} from "@/APIs/types/boards/actions.type";
 
 axios.defaults.baseURL = API_URL;
 const userToken = global?.localStorage?.getItem("userToken");
@@ -44,41 +54,41 @@ export const useAPICaller = () => {
     verifyEmailReducer,
     verifyEmailInitialState,
   );
-  const verifyEmail = <T>(data: T) =>
-    verifyEmailAction<T>(verifyEmailDispatch, data);
+  const verifyEmail = (data: VerifyEmailActionData) =>
+    verifyEmailAction(verifyEmailDispatch, data);
 
   const [signUpResult, signUpDispatch] = useReducer(
     signUpReducer,
     signUpReducerInitialState,
   );
-  const signUp = <T>(data: T) => singUpAction<T>(signUpDispatch, data);
+  const signUp = (data: SignupActionData) => singUpAction(signUpDispatch, data);
 
   const [loginResult, loginDispatch] = useReducer(
     loginReducer,
     loginInitialState,
   );
-  const login = <T>(data: T) => loginAction<T>(loginDispatch, data);
+  const login = (data: LoginActionData) => loginAction(loginDispatch, data);
 
   const [createBoardResult, createBoardDispatch] = useReducer(
     createBoardReducer,
     createBoardInitialState,
   );
-  const createBoard = <T>(data: T) =>
-    createBoardAction<T>(createBoardDispatch, data);
+  const createBoard = (data: CreateBoardActionData) =>
+    createBoardAction(createBoardDispatch, data);
 
   const [updateBoardResult, updateBoardDispatch] = useReducer(
     updateBoardReducer,
     updateBoardInitialState,
   );
-  const updateBoard = <T>(data: T) =>
-    updateBoardAction<T>(updateBoardDispatch, data);
+  const updateBoard = (data: UpdateBoardActionData) =>
+    updateBoardAction(updateBoardDispatch, data);
 
   const [deleteBoardResult, deleteBoardDispatch] = useReducer(
     deleteBoardReducer,
     deleteBoardInitialState,
   );
-  const deleteBoard = <T>(data: T) =>
-    deleteBoardAction<T>(deleteBoardDispatch, data);
+  const deleteBoard = (data: DeleteBoardActionData) =>
+    deleteBoardAction(deleteBoardDispatch, data);
 
   return {
     verifyEmailCaller: [verifyEmail, verifyEmailResult] as const,
