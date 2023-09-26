@@ -14,6 +14,10 @@ export default function Error({ error }: ErrorProps<NotAuthorizedError>) {
     if (error.message === "you don't have access to this resource") {
       router.push("/login");
     }
+
+    if (error.message === "board not found") {
+      router.push("/board/not-found");
+    }
   }, [error]);
 
   return <p>{error.message}</p>;
