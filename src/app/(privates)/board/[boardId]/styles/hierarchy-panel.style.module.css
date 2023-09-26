@@ -1,0 +1,93 @@
+.hierarchyPanel {
+  border-radius: 10px;
+  position: absolute;
+  margin: 1rem;
+  display: flex;
+  max-height: calc(100% - 8rem);
+  top: 3rem;
+  z-index: 4;
+  overflow: auto;
+}
+
+.hierarchyButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem;
+  width: 5rem;
+  border-radius: 10px;
+  height: fit-content;
+  background-color: #141417;
+}
+
+.hierarchyButtonsContainer .button {
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  background-color: #fff;
+}
+
+.buttonClicked {
+  box-shadow: 1px 1px 7px 2px #000 inset;
+}
+
+.button img {
+  width: 50%;
+  height: 50%;
+}
+
+.hierarchyPanelDivider {
+  border: 1px solid;
+  border: 1px solid #fff;
+}
+
+@media (max-width: 850px) {
+  .hierarchyPanel {
+    overflow-x: scroll;
+    overflow-y: clip;
+    top: calc(100% - 10rem);
+    transition:
+      left 300ms,
+      max-width 300ms;
+    left: 3rem;
+    max-width: calc(100% - 8rem);
+  }
+
+  .hierarchyPanelShapesListOpen {
+    left: 9rem;
+    max-width: calc(100% - 14rem);
+  }
+
+  .hierarchyButtonsContainer {
+    flex-direction: row;
+    height: 5rem;
+    width: unset;
+  }
+
+  .hierarchyButtonsContainer .button {
+    height: 100%;
+    width: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hierarchyPanelShapesListOpen {
+    left: 7rem;
+    max-width: calc(100% - 12rem);
+  }
+
+  .hierarchyPanel {
+    top: calc(100% - 8rem);
+  }
+
+  .hierarchyButtonsContainer {
+    height: 3rem;
+  }
+
+  .hierarchyButtonsContainer .button {
+    width: 2rem;
+  }
+}

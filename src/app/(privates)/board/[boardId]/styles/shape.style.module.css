@@ -1,0 +1,23 @@
+.drawingPanel .shape {
+  position: absolute;
+}
+
+.shapeSelectionBox {
+  border: 5px solid #158fca;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box !important;
+  position: absolute;
+  display: none;
+  top: -5px;
+  left: -5px;
+  border-radius: 5px;
+}
+
+.shape:hover .shapeSelectionBox {
+  display: unset;
+}
+
+.shapeSelectionBoxSelected {
+  display: unset;
+}
