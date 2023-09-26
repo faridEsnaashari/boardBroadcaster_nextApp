@@ -1,22 +1,35 @@
 import axios, { AxiosInstance } from "axios";
-import { ServerApisResponse } from "./server-apis.type";
+import { BoardExistsActionData, ServerApisResponse } from "./server-apis.type";
 import { cookies } from "next/headers";
 import { API_URL } from "@/config";
+import { ApiUser } from "../types/boards/entities.type";
+import { User } from "@/common/types/entities.type";
 
-export async function getUserData(data: boolean): Promise<ServerApisResponse> {
+export async function doesBoardExists(
+  data: BoardExistsActionData,
+): Promise<ServerApisResponse> {
   const axiosInstance = configAxios();
-  const response = await axiosInstance.get(`/user?complete=${data}`);
+  const response = await axiosInstance.get<ServerApisResponse>(
+    `/board/identifier/${data.boardIdentifier}`,
+  );
 
-  const { _id, name, email, boards } = response.data.data;
+  return response.data;
+}
+
+export async function getUserData(data: boolean): Promise<User> {
+  const axiosInstance = configAxios();
+  const response = await axiosInstance.get<ServerApisResponse<ApiUser>>(
+    `/user?complete=${data}`,
+  );
+
+  const { _id, name, email, boards: apiBoards } = response.data.data;
+  const boards = apiBoards.map((board) => ({ ...board, owner: undefined }));
 
   return {
-    statusCode: response.status,
-    data: {
-      _id,
-      name,
-      email,
-      boards,
-    },
+    _id,
+    name,
+    email,
+    boards,
   };
 }
 
