@@ -9,6 +9,7 @@ export default function NormalLine({
   attributes,
   selected,
   hovered,
+  setSelectedShape,
 }: ShapeProps<NormalLineAttributes>) {
   const prepareNormalLine = (): ReactNode => {
     const { x1, y1, x2, y2 } = attributes;
@@ -50,7 +51,7 @@ export default function NormalLine({
           className={styles.shape}
           style={shapeStyles}
           id={id}
-          //onClick={() => onSelectedChange({ shape: id })}
+          onClick={() => setSelectedShape && setSelectedShape(id)}
         >
           <div
             className={`${styles.shapeSelectionBox} ${

@@ -9,6 +9,7 @@ export default function VerticalLine({
   selected,
   attributes,
   id,
+  setSelectedShape,
 }: ShapeProps<VerticalLineAttributes>) {
   const prepareVerticalLineAttributes = (): VerticalLineAttributes => {
     const { x, y, length, ...rest } = attributes;
@@ -46,7 +47,7 @@ export default function VerticalLine({
         className={styles.shape}
         style={shapeStyles}
         id={id}
-        //     onClick={() => onSelectedChange({ shape: id })}
+        onClick={() => setSelectedShape && setSelectedShape(id)}
       >
         <div
           className={` ${styles.shapeSelectionBox} ${

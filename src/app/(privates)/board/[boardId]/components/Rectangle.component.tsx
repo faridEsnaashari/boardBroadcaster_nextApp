@@ -9,6 +9,7 @@ export default function Rectangle({
   attributes,
   selected,
   hovered,
+  setSelectedShape,
 }: ShapeProps<RectangleAttributes>) {
   const prepareRectangleAttributes = (): RectangleAttributes => {
     const { x, y, width, height, ...rest } = attributes;
@@ -67,7 +68,7 @@ export default function Rectangle({
         className={styles.shape}
         style={shapeStyles}
         id={id}
-        //onClick={() => onSelectedChange({ shape: id })}
+        onClick={() => setSelectedShape && setSelectedShape(id)}
       >
         <div
           className={`${styles.shapeSelectionBox} ${

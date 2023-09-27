@@ -9,6 +9,7 @@ export default function HorizontalLine({
   attributes,
   selected,
   hovered,
+  setSelectedShape,
 }: ShapeProps<HorizontalLineAttributes>) {
   const prepareHorizontalLineAttributes = (): HorizontalLineAttributes => {
     const { x, y, length, ...rest } = attributes;
@@ -46,7 +47,7 @@ export default function HorizontalLine({
         className={styles.shape}
         style={shapeStyles}
         id={id}
-        //onClick={() => onSelectedChange({ shape: id })}
+        onClick={() => setSelectedShape && setSelectedShape(id)}
       >
         <div
           className={`${styles.shapeSelectionBox} ${
