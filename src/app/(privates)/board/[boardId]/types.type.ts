@@ -4,9 +4,10 @@ export type PageParams = { params: { boardId: string } };
 
 export type DrawingPanelProps = {
   paintable: boolean;
-  shapes: ShapeEntity<Attributes>[];
-  selected?: boolean;
-  hovered?: ShapeEntity<Attributes>["name"];
+  shapes: ShapeEntity[];
+  selectedShape?: ShapeEntity["name"];
+  actionMode?: ActionMode;
+  hoveredShape?: ShapeEntity["name"];
   setDrawingPanelSize: ({
     width,
     height,
@@ -14,6 +15,7 @@ export type DrawingPanelProps = {
     width: number;
     height: number;
   }) => void;
+  setSelectedShape?: (shapeName: ShapeEntity["name"]) => void;
 };
 
 export type Attributes =
@@ -27,6 +29,7 @@ export type ShapeProps<T extends Attributes> = {
   selected: boolean;
   attributes: T;
   id: ShapeEntity<T>["name"];
+  setSelectedShape?: (shapeName: ShapeEntity["name"]) => void;
 };
 
 export type VerticalLineAttributes = {
