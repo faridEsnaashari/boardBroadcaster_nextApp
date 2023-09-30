@@ -16,6 +16,8 @@ export type DrawingPanelProps = {
     height: number;
   }) => void;
   setSelectedShape?: (shapeName: ShapeEntity["name"]) => void;
+  onShapeUpdate?: (shape: ShapeEntity) => void;
+  onFinishPainting?: () => void;
 };
 
 export type Attributes =
@@ -80,10 +82,13 @@ export type CollapsableButtonsProps = { children: ReactNode };
 
 export type HierarchyPanelProps = {
   onShapesListOpening: (shapesListOpening: boolean) => void;
-  setSelectedShape: (shapeName: ShapeEntity["name"]) => void;
   actionMode: ActionMode;
   setActionMode: Dispatch<SetStateAction<ActionMode>>;
   drawingPanelSize: { width: number; height: number };
+  onCreateShape: (shape: ShapeEntity) => void;
+  onDeleteShape: () => void;
+  onDeleteAllShapes: () => void;
+  onDuplicate: () => void;
 };
 
 export enum ActionMode {
