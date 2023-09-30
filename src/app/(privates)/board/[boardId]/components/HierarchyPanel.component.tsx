@@ -28,7 +28,10 @@ export default function HierarchyPanel({
   setActionMode,
   actionMode,
   drawingPanelSize,
-  setSelectedShape,
+  onCreateShape,
+  onDeleteShape,
+  onDeleteAllShapes,
+  onDuplicate,
 }: HierarchyPanelProps) {
   const [shapesListOpening, setShapesListOpening] = useState(false);
   const [centerOfDrawingPanel, setCenterOfDrawingPanel] = useState({
@@ -67,9 +70,9 @@ export default function HierarchyPanel({
   ) => {
     buttonClickedAutoEffect(e);
 
-    //    shapeFunction === "delete" && onDeleteShapeProp();
-    //    shapeFunction === "deleteAll" && onDeleteAllShape();
-    //    shapeFunction === "duplicate" && onDuplicate();
+    shapeFunction === "delete" && onDeleteShape();
+    shapeFunction === "deleteAll" && onDeleteAllShapes();
+    shapeFunction === "duplicate" && onDuplicate();
   };
 
   const generateAttributes = (shapeType: ShapeTypes): Attributes => {
@@ -120,19 +123,17 @@ export default function HierarchyPanel({
   ) => {
     buttonClickedAutoEffect(e);
 
-    const shapeId = Date.now();
-    const shapeName = `${shapeType}${shapeId}`;
+    const shapeId = Date.now() + "";
 
     const newShape: ShapeEntity = {
       deleted: false,
-      name: shapeName,
+      name: shapeId,
       type: shapeType,
       attributes: generateAttributes(shapeType),
     };
 
     setActionMode(ActionMode.Rescale);
-    setSelectedShape(shapeName);
-    //        onAShapeUpdated(newNormalLine);
+    onCreateShape(newShape);
   };
 
   return (
