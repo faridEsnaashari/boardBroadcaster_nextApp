@@ -35,6 +35,8 @@ export default function NormalLine({
     const left = `${attributes.x1}px`;
     const top = `${attributes.y1}px`;
 
+    shapeStyles.backgroundColor = attributes.color;
+
     const normalLineHolderStyles: CSSProperties = {
       transform: `rotate(${angleInDegree}deg)`,
       width: "1px",

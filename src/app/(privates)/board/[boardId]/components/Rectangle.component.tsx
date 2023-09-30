@@ -58,6 +58,8 @@ export default function Rectangle({
     shapeStyles.left = left;
     shapeStyles.top = top;
 
+    shapeStyles.backgroundColor = preparedAttributes.color;
+
     shapeStyles.height = `${preparedAttributes.height}px`;
     shapeStyles.width = `${preparedAttributes.width}px`;
 

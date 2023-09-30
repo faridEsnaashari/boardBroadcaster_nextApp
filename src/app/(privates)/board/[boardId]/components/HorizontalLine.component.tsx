@@ -37,6 +37,8 @@ export default function HorizontalLine({
     shapeStyles.left = left;
     shapeStyles.top = top;
 
+    shapeStyles.backgroundColor = preparedAttributes.color;
+
     shapeStyles.width = `${preparedAttributes.length}px`;
     shapeStyles.height = "2px";
 

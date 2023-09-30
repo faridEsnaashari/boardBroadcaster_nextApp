@@ -37,6 +37,8 @@ export default function VerticalLine({
     shapeStyles.left = left;
     shapeStyles.top = top;
 
+    shapeStyles.backgroundColor = preparedAttributes.color;
+
     shapeStyles.width = "2px";
     shapeStyles.height = `${preparedAttributes.length}px`;
 
