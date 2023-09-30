@@ -32,12 +32,27 @@ export default function DrawingPanel({
   actionMode,
   hoveredShape,
   setDrawingPanelSize,
+  onShapeUpdate,
+  onFinishPainting,
 }: DrawingPanelProps) {
   const drawingPanelRef = useRef<HTMLDivElement>(null);
   const mousePanelRef = useRef<HTMLDivElement>(null);
 
   const [panelActive, setPanelActive] = useState(false);
   const [lastPaint, setLastPaint] = useState(0);
+
+  useEffect(() => {
+    if (
+      actionMode === ActionMode.Disable ||
+      actionMode === ActionMode.Select ||
+      !selectedShape ||
+      panelActive
+    ) {
+      return;
+    }
+
+    onFinishPainting && onFinishPainting();
+  }, [panelActive]);
 
   useEffect(() => {
     if (panelActive) {
@@ -51,20 +66,6 @@ export default function DrawingPanel({
     }
 
     window.onscroll = () => {};
-  }, [panelActive]);
-
-  useEffect(() => {
-    if (
-      actionMode === ActionMode.Disable ||
-      actionMode === ActionMode.Select ||
-      !selectedShape ||
-      panelActive
-    ) {
-      return;
-    }
-
-    const currentShape = shapes.find((shape) => shape.name === selectedShape);
-    //onFinishPainting(currentShape);
   }, [panelActive]);
 
   useEffect(() => {
@@ -231,8 +232,7 @@ export default function DrawingPanel({
     const currentShape = shapes.find((shape) => shape.name === selectedShape)!;
     const updatedShape = updateShapeAttribute(currentShape, mousePostition);
 
-    //    onAShapeUpdated(updatedShape);
-    //
+    onShapeUpdate!(updatedShape);
   };
 
   const getShapes = (): ReactNode[] => {
