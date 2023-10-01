@@ -9,6 +9,7 @@ import HierarchyPanel from "../components/HierarchyPanel.component";
 import DrawingPanel from "../components/DrawingPanel.component";
 import { useSocket } from "@/hooks/use-socket/use-socket.hook";
 import { changeShapeValues } from "@/tools/helpers.helper";
+import ShapesList from "../components/ShapesList.component";
 
 export default function Page({ params }: PageParams) {
   const userData = useContext(UserContext);
@@ -50,12 +51,6 @@ export default function Page({ params }: PageParams) {
     setShapes([...shapes, newShape]);
     setSelectedShape(newShape.name);
 
-    console.log(
-      changeShapeValues("relative", newShape.attributes, {
-        x: drawingPanelSize.width,
-        y: drawingPanelSize.height,
-      }),
-    );
     const socketShape = {
       ...newShape,
       attributes: changeShapeValues("relative", newShape.attributes, {
@@ -163,6 +158,13 @@ export default function Page({ params }: PageParams) {
         onDeleteShape={deleteShape}
         onDeleteAllShapes={deleteAllShapes}
         onDuplicate={duplicateShape}
+      />
+      <ShapesList
+        shapesListOpening={shapesListOpening}
+        shapes={getShowableShapes()}
+        selectedShape={selectedShape}
+        setSelectedShape={setSelectedShape}
+        setHoveredShape={setHoveredShape}
       />
       <DrawingPanel
         paintable={true}
