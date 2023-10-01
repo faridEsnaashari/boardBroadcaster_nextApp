@@ -145,7 +145,7 @@ export default function HierarchyPanel({
       <div className={styles.hierarchyButtonsContainer}>
         <div
           className={`${styles.button} ${
-            !shapesListOpening && styles.buttonClicked
+            shapesListOpening && styles.buttonClicked
           }`}
           onClick={openOrCloseShapesList}
         >
