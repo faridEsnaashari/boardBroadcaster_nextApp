@@ -26,6 +26,12 @@ export type Attributes =
   | NormalLineAttributes
   | RectangleAttributes;
 
+export type KeyOfAttributes =
+  | keyof VerticalLineAttributes
+  | keyof HorizontalLineAttributes
+  | keyof NormalLineAttributes
+  | keyof RectangleAttributes;
+
 export type ShapeProps<T extends Attributes> = {
   hovered: boolean;
   selected: boolean;
@@ -97,3 +103,30 @@ export enum ActionMode {
   Move,
   Select,
 }
+
+export type ShapesListProps = {
+  shapesListOpening: boolean;
+  shapes: ShapeEntity[];
+  selectedShape: ShapeEntity["name"];
+  setSelectedShape: (shape: ShapeEntity["name"]) => void;
+  setHoveredShape: (shape: ShapeEntity["name"]) => void;
+};
+
+export type ShapeDetailProps = {
+  shapeType: ShapeTypes;
+  openOrCloseAttributesContainerOpening: (open: boolean) => void;
+  onClick: () => void;
+  setHoveredShape: (shapeName: ShapeEntity["name"]) => void;
+  shapeName: ShapeEntity["name"];
+  selected: boolean;
+  attributes: Attributes;
+};
+
+export type AttributeProps<T extends KeyOfAttributes = KeyOfAttributes> = {
+  attribute: T;
+  value: (VerticalLineAttributes &
+    RectangleAttributes &
+    HorizontalLineAttributes &
+    NormalLineAttributes)[T];
+  shapeName: ShapeEntity["name"];
+};
