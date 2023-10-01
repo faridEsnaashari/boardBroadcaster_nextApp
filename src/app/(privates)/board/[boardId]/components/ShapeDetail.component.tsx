@@ -2,7 +2,7 @@
 
 import styles from "../styles/shape-detail.style.module.css";
 import Image from "next/image";
-import { ReactNode, useState, useEffect, useRef } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { KeyOfAttributes, ShapeDetailProps, ShapeTypes } from "../types.type";
 import RectongleIcon from "@icons/rectongleIcon.svg";
 import NormalLineIcon from "@icons/normalLineIcon.png";
@@ -19,13 +19,11 @@ export default function ShapeDetail({
   selected,
   attributes,
 }: ShapeDetailProps) {
-  const shapeDetailsRef = useRef<HTMLDivElement>(null!);
-
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     openOrCloseAttributesContainerOpening(open);
-    shapeDetailsRef.current.focus();
+    setHoveredShape(open ? shapeName : "");
   }, [open]);
 
   const getShapeIcon = (): ReactNode => {
@@ -44,16 +42,6 @@ export default function ShapeDetail({
     }
   };
 
-  const onMouseEnter = () => {
-    setOpen(true);
-    setHoveredShape(shapeName);
-  };
-
-  const onMouseLeave = () => {
-    setOpen(false);
-    setHoveredShape("");
-  };
-
   const getAttributes = () => {
     return Object.entries(attributes).map(([attribute, value], index) => (
       <Attribute
@@ -67,16 +55,12 @@ export default function ShapeDetail({
 
   return (
     <div
-      ref={shapeDetailsRef}
       className={`${styles.shapeDetailContainer} ${
         selected && styles.buttonClicked
       }`}
-      key={shapeName}
       onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onBlur={() => setOpen(false)}
-      tabIndex={1}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
     >
       {getShapeIcon()}
       <div
@@ -85,7 +69,7 @@ export default function ShapeDetail({
             ? styles.attributesContainerOpen
             : styles.attributesContainerClose
         }`}
-        onMouseLeave={() => setOpen(false)}
+        onMouseEnter={() => setOpen(false)}
       >
         {getAttributes()}
       </div>
