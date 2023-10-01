@@ -63,7 +63,7 @@ export default function Rectangle({
     shapeStyles.height = `${preparedAttributes.height}px`;
     shapeStyles.width = `${preparedAttributes.width}px`;
 
-    shapeStyles.zIndex = selected ? 1 : 0;
+    shapeStyles.zIndex = selected || hovered ? 1 : 0;
 
     return (
       <div

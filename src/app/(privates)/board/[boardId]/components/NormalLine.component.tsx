@@ -44,7 +44,7 @@ export default function NormalLine({
       position: "absolute",
       top: top,
       left: left,
-      zIndex: selected ? 1 : 0,
+      zIndex: selected || hovered ? 1 : 0,
     };
 
     return (

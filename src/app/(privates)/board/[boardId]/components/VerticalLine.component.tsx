@@ -42,7 +42,7 @@ export default function VerticalLine({
     shapeStyles.width = "2px";
     shapeStyles.height = `${preparedAttributes.length}px`;
 
-    shapeStyles.zIndex = selected ? 1 : 0;
+    shapeStyles.zIndex = selected || hovered ? 1 : 0;
 
     return (
       <div

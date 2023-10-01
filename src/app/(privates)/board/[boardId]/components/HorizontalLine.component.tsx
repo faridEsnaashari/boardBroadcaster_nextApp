@@ -42,7 +42,7 @@ export default function HorizontalLine({
     shapeStyles.width = `${preparedAttributes.length}px`;
     shapeStyles.height = "2px";
 
-    shapeStyles.zIndex = selected ? 1 : 0;
+    shapeStyles.zIndex = selected || hovered ? 1 : 0;
 
     return (
       <div
