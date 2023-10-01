@@ -1,0 +1,87 @@
+.shapeDetailContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 4rem;
+  height: 4rem;
+}
+
+.shapeDetailContainer > img {
+  width: 50%;
+  height: 50%;
+}
+
+.shapeDetailContainer:focus {
+  border: unset;
+  outline: unset;
+}
+
+.attributesContainerClose {
+  transform: scaleY(0);
+}
+
+.attributesContainerOpen {
+  transform: scaleY(1);
+}
+
+.shapeName {
+  position: absolute;
+  font-size: 0.9em;
+  left: 5px;
+  bottom: 0;
+}
+
+.shapeType {
+  position: absolute;
+  font-size: 0.7em;
+  right: 5px;
+}
+
+.buttonClicked {
+  box-shadow: 1px 1px 7px 2px #000 inset;
+}
+
+.attributesContainer {
+  display: flex;
+  width: 20rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  position: absolute;
+  left: 5rem;
+  border: 1px solid;
+  top: 0;
+  transition: transform 300ms;
+  transform-origin: top;
+  color: #fff;
+  padding: 1rem 0 1rem 1rem;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    10% 100%,
+    9% 99%,
+    8% 98%,
+    5% 20%
+  );
+  background-color: #141417;
+  border-radius: 6px;
+}
+
+.attributesContainer:hover {
+  transform: scaleY(1);
+}
+
+@media (max-width: 600px) {
+  .shapeDetailContainer {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .attributesContainer {
+    left: 3rem;
+    width: 10rem;
+  }
+}
