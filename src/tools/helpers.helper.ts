@@ -114,3 +114,14 @@ export const debouncerHOF = (function () {
     }) as T;
   };
 })();
+
+export const isValidEmail = (
+  email: string,
+  emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+): boolean => emailRegex.test(email);
+
+export const isValidPassword = (password: string): boolean =>
+  password.length >= 8;
+
+export const isValidUseerName = (userName: string): boolean =>
+  userName.length >= 3;
