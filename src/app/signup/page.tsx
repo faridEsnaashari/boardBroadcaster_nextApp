@@ -1,6 +1,11 @@
 "use client";
 
-import { getElementValueById } from "@/tools/helpers.helper";
+import {
+  getElementValueById,
+  isValidEmail,
+  isValidPassword,
+  isValidUseerName,
+} from "@/tools/helpers.helper";
 import styles from "./styles/page.style.module.css";
 import { FormEvent, useEffect } from "react";
 import useAPICaller from "@/hooks/use-api-caller.hook";
@@ -10,23 +15,46 @@ import UserNameIcon from "@icons/user.png";
 import PasswordIcon from "@icons/key.png";
 import EmailIcon from "@icons/mail.png";
 import Image from "next/image";
+import withNotification from "@/HOCs/withNotification";
+import { NotificationProps } from "@/HOCs/withNotification/types.type";
 
-export default function Page() {
+function Page({ notificationFucntions }: NotificationProps) {
   const [signUp, result] = useAPICaller().signUpCaller;
   const router = useRouter();
 
   useEffect(() => {
+    if (!result.statusCode) {
+      return;
+    }
+
     if (result.statusCode === StatusCodes.SUCCESS_CREATE_MSG) {
+      notificationFucntions.success("signed up successfully");
       router.push("/signup/verification-sent");
       return;
     }
-  }, [result]);
+
+    if (result.statusCode === StatusCodes.CONFILICT_ERR) {
+      notificationFucntions.error("user already exists");
+      return;
+    }
+
+    notificationFucntions.error("something went wrong");
+  }, [result.statusCode]);
 
   const registerTheUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const name = getElementValueById("name")!;
     const password = getElementValueById("password")!;
     const email = getElementValueById("email")!;
+
+    if (
+      !isValidEmail(email) ||
+      !isValidUseerName(name) ||
+      !isValidPassword(password)
+    ) {
+      notificationFucntions.error("wrong format");
+      return;
+    }
 
     const userInformation = {
       name,
@@ -73,3 +101,5 @@ export default function Page() {
     </div>
   );
 }
+
+export default withNotification(Page);

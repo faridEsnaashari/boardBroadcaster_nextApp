@@ -11,8 +11,10 @@ import { Board } from "@/common/types/entities.type";
 import BoardCard from "./components/BoardCard.component";
 import { APP_URL } from "@/config";
 import { useSignal } from "@/hooks/use-signal.hook";
+import withNotification from "@/HOCs/withNotification";
+import { NotificationProps } from "@/HOCs/withNotification/types.type";
 
-export default function Page() {
+function Page({ notificationFucntions }: NotificationProps) {
   const userData = useContext(UserContext);
 
   const [boards, setBoards] = useState<Board[]>(userData!.boards!);
@@ -40,12 +42,14 @@ export default function Page() {
     }
 
     if (deleteBoardResult.error) {
+      notificationFucntions.error("something went wrong");
       return setDeleteLoading(
         deleteLoading.filter((boardId) => boardId !== deleteBoardResult.error),
       );
     }
 
     if (deleteBoardResult.statusCode === StatusCodes.SUCCESS_MSG) {
+      notificationFucntions.success("board has been deleted successfully");
       setDeleteLoading(
         deleteLoading.filter(
           (boardId) => boardId !== deleteBoardResult.board?._id,
@@ -62,6 +66,7 @@ export default function Page() {
     }
 
     if (updateBoardResult.error) {
+      notificationFucntions.error("something went wrong");
       setRenameLoading(
         renameLoading.filter((boardId) => boardId !== updateBoardResult.error),
       );
@@ -69,6 +74,7 @@ export default function Page() {
     }
 
     if (updateBoardResult.statusCode === StatusCodes.SUCCESS_MSG) {
+      notificationFucntions.success("board has been updated successfully");
       setRenameLoading(
         renameLoading.filter(
           (boardId) => boardId !== updateBoardResult.board?._id,
@@ -86,14 +92,21 @@ export default function Page() {
 
   useEffect(() => {
     if (createBoardResult.statusCode === StatusCodes.SUCCESS_CREATE_MSG) {
+      notificationFucntions.success("board has been created successfully");
       setBoards([...boards, createBoardResult.board!]);
     }
 
     if (createBoardResult.error) {
+      notificationFucntions.error("something went wrong");
     }
   }, [createBoardResult.isFetching]);
 
   const createBoard = (name: Board["name"]) => {
+    if (!name) {
+      notificationFucntions.error("wrong format");
+      return;
+    }
+
     const color = getRandomBoardColor();
 
     createBoardAction({
@@ -103,6 +116,11 @@ export default function Page() {
   };
 
   const updateBoard = (boardId: Board["_id"]) => (name: Board["name"]) => {
+    if (!name) {
+      notificationFucntions.error("wrong format");
+      return;
+    }
+
     updateBoardAction({ id: boardId, name });
     setRenameLoading([...renameLoading, boardId]);
   };
@@ -157,3 +175,5 @@ export default function Page() {
     </div>
   );
 }
+
+export default withNotification(Page);

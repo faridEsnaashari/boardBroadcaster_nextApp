@@ -5,13 +5,19 @@ import styles from "./styles/page.style.module.css";
 import UserNameIcon from "@icons/user.png";
 import PasswordIcon from "@icons/key.png";
 import Image from "next/image";
-import { getElementValueById } from "@/tools/helpers.helper";
+import {
+  getElementValueById,
+  isValidEmail,
+  isValidPassword,
+} from "@/tools/helpers.helper";
 import useAPICaller from "@/hooks/use-api-caller.hook";
 import { FormEvent, useEffect } from "react";
 import { StatusCodes } from "@/tools/status-codes.tools";
 import { useRouter } from "next/navigation";
+import withNotification from "@/HOCs/withNotification";
+import { NotificationProps } from "@/HOCs/withNotification/types.type";
 
-export default function Page() {
+function Page({ notificationFucntions }: NotificationProps) {
   const [login, result] = useAPICaller().loginCaller;
   const router = useRouter();
 
@@ -19,6 +25,11 @@ export default function Page() {
     e.preventDefault();
     const password = getElementValueById("password")!;
     const email = getElementValueById("email")!;
+
+    if (!isValidPassword(password) || !isValidEmail(email)) {
+      notificationFucntions.error("wrong format");
+      return;
+    }
 
     const userInformation = {
       password,
@@ -29,14 +40,27 @@ export default function Page() {
   };
 
   useEffect(() => {
+    if (!result.statusCode) {
+      return;
+    }
+
+    if (result.statusCode === StatusCodes.UNAUTHORIZED_ERR) {
+      notificationFucntions.error("wrong username or password");
+      return;
+    }
+
     if (result.statusCode === StatusCodes.SUCCESS_MSG) {
       global.localStorage.setItem("userToken", result.userToken as string);
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + result.userToken;
 
+      notificationFucntions.success("loged in successfully");
+
       router.push("/boards-panel");
       return;
     }
+
+    notificationFucntions.error("something went wrong. please try again");
   }, [result.statusCode]);
 
   return (
@@ -69,3 +93,5 @@ export default function Page() {
     </div>
   );
 }
+
+export default withNotification(Page);
