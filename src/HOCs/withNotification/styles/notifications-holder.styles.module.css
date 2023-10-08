@@ -1,0 +1,25 @@
+.notificationsContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem;
+  gap: 1rem;
+  max-height: 100vh;
+  overflow: scroll;
+  overflow-x: clip;
+  box-sizing: border-box;
+  animation-name: notificationCreation;
+  animation-duration: 1s;
+}
+
+@keyframes notificationCreation {
+  from {
+    transform: translateY(-10rem);
+  }
+  to {
+    transform: translateY(0rem);
+  }
+}
