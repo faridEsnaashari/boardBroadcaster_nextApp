@@ -65,10 +65,6 @@ export default function BoardCard({
 
   const onRename = () => {
     const newName = renameInputRef.current!.value;
-    if (!newName) {
-      return;
-    }
-
     updateBoard(newName);
     resetBoard();
   };
