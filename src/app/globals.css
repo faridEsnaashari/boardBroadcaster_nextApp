@@ -5,3 +5,8 @@ body {
 p {
   margin: unset;
 }
+
+button {
+  border: none;
+  padding: unset;
+}
