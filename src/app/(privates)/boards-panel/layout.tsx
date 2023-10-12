@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { LayoutProps } from "@/common/types/next-components.type";
 import styles from "./styles/layout.style.module.css";
 import Logout from "./components/Logout.component";
