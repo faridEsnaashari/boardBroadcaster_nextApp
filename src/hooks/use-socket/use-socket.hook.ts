@@ -1,7 +1,7 @@
 import { Socket, io } from "socket.io-client";
 import { ClientToServer, ServerToClient } from "./types.type";
 import { useState, useEffect } from "react";
-import { SOCKET_URL } from "@/config";
+import { GENERAL } from "@/configs";
 import { debouncerHOF } from "@/tools/helpers.helper";
 import { Board } from "@/common/types/entities.type";
 
@@ -21,7 +21,7 @@ export const useSocket = (
   onDeleteShape && socket?.on("deleteShape", onDeleteShape);
 
   useEffect(() => {
-    setSocket(io(SOCKET_URL));
+    setSocket(io(GENERAL.SOCKET_URL!));
 
     return (): void => {
       socket!.disconnect();

@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 
-import { API_URL } from "@/config";
+import { GENERAL } from "@/configs";
 import axios from "axios";
 import {
   signUpReducer,
@@ -42,7 +42,7 @@ import {
   UpdateBoardActionData,
 } from "@/APIs/types/boards/actions.type";
 
-axios.defaults.baseURL = API_URL;
+axios.defaults.baseURL = GENERAL.API_URL;
 const userToken = global?.localStorage?.getItem("userToken");
 axios.defaults.withCredentials = true;
 if (userToken) {

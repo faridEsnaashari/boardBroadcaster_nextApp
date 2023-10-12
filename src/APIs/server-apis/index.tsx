@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { BoardExistsActionData, ServerApisResponse } from "./server-apis.type";
 import { cookies } from "next/headers";
-import { API_URL } from "@/config";
+import { GENERAL } from "@/configs";
 import { ApiUser } from "../types/boards/entities.type";
 import { User } from "@/common/types/entities.type";
 
@@ -38,7 +38,7 @@ function configAxios(): AxiosInstance {
   const token = cookieStore.get("userToken");
 
   return axios.create({
-    baseURL: API_URL,
+    baseURL: GENERAL.API_URL,
     headers: { Cookie: `${token?.name}=${token?.value}` },
   });
 }

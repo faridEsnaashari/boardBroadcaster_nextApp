@@ -9,7 +9,7 @@ import useAPICaller from "@/hooks/use-api-caller.hook";
 import { StatusCodes } from "@/tools/status-codes.tools";
 import { Board } from "@/common/types/entities.type";
 import BoardCard from "./components/BoardCard.component";
-import { APP_URL } from "@/config";
+import { GENERAL } from "@/configs";
 import { useSignal } from "@/hooks/use-signal.hook";
 import withNotification from "@/HOCs/withNotification";
 import { NotificationProps } from "@/HOCs/withNotification/types.type";
@@ -132,13 +132,17 @@ function Page({ notificationFucntions }: NotificationProps) {
 
   const copyPresenterUrl =
     (boardUrl: Board["boardIdentifier"], boardId: Board["_id"]) => () => {
-      navigator.clipboard.writeText(`${APP_URL}/board/${boardUrl}/presenter`);
+      navigator.clipboard.writeText(
+        `${GENERAL.APP_URL}/board/${boardUrl}/presenter`,
+      );
       presenterUrlCopiedSignalActivate(boardId);
     };
 
   const copyParticipantUrl =
     (boardUrl: Board["boardIdentifier"], boardId: Board["_id"]) => () => {
-      navigator.clipboard.writeText(`${APP_URL}/board/${boardUrl}/participant`);
+      navigator.clipboard.writeText(
+        `${GENERAL.APP_URL}/board/${boardUrl}/participant`,
+      );
       participantUrlCopiedSignalActivate(boardId);
     };
 
