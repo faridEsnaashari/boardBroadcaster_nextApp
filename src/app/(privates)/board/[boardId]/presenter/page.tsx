@@ -3,13 +3,13 @@
 import { useContext, useState } from "react";
 import { ActionMode, PageParams, ShapeEntity } from "../types.type";
 import { UserContext } from "@/contexts/user/user.context";
-import { NotFoundError } from "@/app/errors/not-found.error";
 import styles from "../styles/page.style.module.css";
 import HierarchyPanel from "../components/HierarchyPanel.component";
 import DrawingPanel from "../components/DrawingPanel.component";
 import { useSocket } from "@/hooks/use-socket/use-socket.hook";
 import { changeShapeValues } from "@/tools/helpers.helper";
 import ShapesList from "../components/ShapesList.component";
+import { redirect } from "next/navigation";
 
 export default function Page({ params }: PageParams) {
   const userData = useContext(UserContext);
@@ -144,7 +144,7 @@ export default function Page({ params }: PageParams) {
     shapes.filter((shape) => !shape.deleted);
 
   if (!boardExists) {
-    throw new NotFoundError("board not found");
+    redirect("/boards-panel");
   }
 
   return (

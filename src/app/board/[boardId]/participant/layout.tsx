@@ -1,7 +1,7 @@
 import { LayoutProps } from "@/common/types/next-components.type";
 import { LayoutParams } from "./types.type";
 import { doesBoardExists } from "@/APIs/server-apis";
-import { NotFoundError } from "@/app/errors/not-found.error";
+import { redirect } from "next/navigation";
 
 export default async function Layout({
   params,
@@ -14,6 +14,7 @@ export default async function Layout({
     }
     return <>{children}</>;
   } catch (err) {
-    throw new NotFoundError("board not found");
+    console.error(err);
+    redirect("/boards-panel");
   }
 }
