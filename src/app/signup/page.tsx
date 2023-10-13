@@ -78,15 +78,15 @@ function Page({ notificationFucntions }: NotificationProps) {
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <input type="password" name="password" id="password" />
-            <div>
-              <Image src={PasswordIcon} alt="user-name-icon" />
-            </div>
-          </div>
-          <div className={styles.inputContainer}>
             <input type="text" name="email" id="email" />
             <div>
               <Image src={EmailIcon} alt="user-name-icon" />
+            </div>
+          </div>
+          <div className={styles.inputContainer}>
+            <input type="password" name="password" id="password" />
+            <div>
+              <Image src={PasswordIcon} alt="user-name-icon" />
             </div>
           </div>
           <div className={styles.signupSubmitMainContainer}>
