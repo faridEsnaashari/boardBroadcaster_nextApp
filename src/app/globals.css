@@ -10,3 +10,8 @@ button {
   border: none;
   padding: unset;
 }
+
+a {
+  text-decoration: unset;
+  color: unset;
+}
