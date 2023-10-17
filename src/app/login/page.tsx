@@ -16,6 +16,7 @@ import { StatusCodes } from "@/tools/status-codes.tools";
 import { useRouter } from "next/navigation";
 import withNotification from "@/HOCs/withNotification";
 import { NotificationProps } from "@/HOCs/withNotification/types.type";
+import Link from "next/link";
 
 function Page({ notificationFucntions }: NotificationProps) {
   const [login, result] = useAPICaller().loginCaller;
@@ -87,6 +88,9 @@ function Page({ notificationFucntions }: NotificationProps) {
               <div></div>
               <input type="submit" value="login" />
             </div>
+          </div>
+          <div>
+            <Link href="/signup">signup</Link>
           </div>
         </form>
       </div>

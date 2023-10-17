@@ -12,6 +12,12 @@
   justify-content: center;
 }
 
+.loginContainer a {
+  color: #ccc9c9;
+  display: block;
+  text-align: center;
+}
+
 .inputContainer {
   display: flex;
   position: relative;

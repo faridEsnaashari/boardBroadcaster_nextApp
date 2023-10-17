@@ -17,6 +17,7 @@ import EmailIcon from "@icons/mail.png";
 import Image from "next/image";
 import withNotification from "@/HOCs/withNotification";
 import { NotificationProps } from "@/HOCs/withNotification/types.type";
+import Link from "next/link";
 
 function Page({ notificationFucntions }: NotificationProps) {
   const [signUp, result] = useAPICaller().signUpCaller;
@@ -95,6 +96,9 @@ function Page({ notificationFucntions }: NotificationProps) {
               <div></div>
               <input type="submit" value="signup" />
             </div>
+          </div>
+          <div>
+            <Link href="/login">login</Link>
           </div>
         </form>
       </div>
