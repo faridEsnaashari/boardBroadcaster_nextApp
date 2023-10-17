@@ -1,6 +1,7 @@
 import { StatusCodes } from "@/tools/status-codes.tools";
 import {
   LoginActionTypes,
+  LogoutActionTypes,
   SignUpActionTypes,
   VerifyEmailActionTypes,
 } from "./authentication.enum";
@@ -19,6 +20,11 @@ export type LoginAction = {
   statusCode?: StatusCodes;
   type: LoginActionTypes;
   userToken?: string;
+};
+
+export type LogoutAction = {
+  statusCode?: StatusCodes;
+  type: LogoutActionTypes;
 };
 
 export type LoginActionData = {

@@ -15,3 +15,8 @@ export type LoginState = {
   statusCode?: StatusCodes;
   userToken?: string;
 };
+
+export type LogoutState = {
+  isFetching: boolean;
+  statusCode?: StatusCodes;
+};

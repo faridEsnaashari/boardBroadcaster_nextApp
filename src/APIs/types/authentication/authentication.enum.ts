@@ -15,3 +15,9 @@ export enum LoginActionTypes {
   RECIVED_LOGIN = "RECIVED_LOGIN",
   FAILED_LOGIN = "FAILED_LOGIN",
 }
+
+export enum LogoutActionTypes {
+  REQUESTD_LOGOUT = "REQUESTD_LOGOUT",
+  RECIVED_LOGOUT = "RECIVED_LOGOUT",
+  FAILED_LOGOUT = "FAILED_LOGOUT",
+}
