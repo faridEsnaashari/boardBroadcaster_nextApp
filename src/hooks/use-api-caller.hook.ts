@@ -41,6 +41,11 @@ import {
   DeleteBoardActionData,
   UpdateBoardActionData,
 } from "@/APIs/types/boards/actions.type";
+import {
+  logoutInitialState,
+  logoutReducer,
+} from "@/APIs/reducers/authentication/logout.reducer";
+import { logoutAction } from "@/APIs/actions/authentication/logout.action";
 
 axios.defaults.baseURL = GENERAL.API_URL;
 const userToken = global?.localStorage?.getItem("userToken");
@@ -90,10 +95,17 @@ export const useAPICaller = () => {
   const deleteBoard = (data: DeleteBoardActionData) =>
     deleteBoardAction(deleteBoardDispatch, data);
 
+  const [logoutResult, logoutDispatch] = useReducer(
+    logoutReducer,
+    logoutInitialState,
+  );
+  const logout = () => logoutAction(logoutDispatch);
+
   return {
     verifyEmailCaller: [verifyEmail, verifyEmailResult] as const,
     signUpCaller: [signUp, signUpResult] as const,
     loginCaller: [login, loginResult] as const,
+    logoutCaller: [logout, logoutResult] as const,
     boardCaller: {
       create: [createBoard, createBoardResult] as const,
       update: [updateBoard, updateBoardResult] as const,
