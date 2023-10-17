@@ -1,13 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../styles/logout.style.module.css";
-export default function Logout() {
+import useAPICaller from "@/hooks/use-api-caller.hook";
+import { StatusCodes } from "@/tools/status-codes.tools";
+import withNotification from "@/HOCs/withNotification";
+import { NotificationProps } from "@/HOCs/withNotification/types.type";
+
+function Logout({ notificationFucntions }: NotificationProps) {
   const [openLogOutDialog, setOpenLogOutDialog] = useState(false);
 
+  const [logout, logoutResult] = useAPICaller().logoutCaller;
+
   const router = useRouter();
-  const redirect = () => router.push("/logout");
+
+  useEffect(() => {
+    if (logoutResult.isFetching) {
+      return;
+    }
+
+    if (logoutResult.statusCode === StatusCodes.SUCCESS_MSG) {
+      notificationFucntions.success("loged out successfully");
+      router.push("/login");
+    }
+  }, [logoutResult.statusCode]);
 
   return (
     <div className={styles.optionContainer}>
@@ -15,7 +32,7 @@ export default function Logout() {
         className={`${styles.logOut} ${
           !openLogOutDialog && styles.logOutClose
         }`}
-        onClick={redirect}
+        onClick={logout}
       >
         log out
       </div>
@@ -32,3 +49,5 @@ export default function Logout() {
     </div>
   );
 }
+
+export default withNotification(Logout);
