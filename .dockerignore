@@ -1,0 +1,13 @@
+node_module
+
+.env*
+
+.eslint*
+
+.prettier*
+
+Dockerfile
+
+nodemon.json
+
+*.md
